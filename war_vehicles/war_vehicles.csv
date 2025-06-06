@@ -1,0 +1,56 @@
+﻿Vehicle Name,Primary Vehicle Type,Secondary Vehicle Type,Country,Conflict,Description,Image
+A7V,Tank,None,Germany,WW1,"Germany’s only operational tank in WW1, slow and heavily armed.",a7v.jpg
+Austin Armored Car,Armored Car,None,Russia,WW1,Russian armored car used for scouting and infantry support.,Austin_Armored_Car
+BA-64,Armored Car,None,Soviet Union,WW2,Soviet light armored car used for reconnaissance.,BA_64_ac
+Bedford QL,Transport Vehicle,None,United Kingdom,WW2,British military truck used for supplies and transport.,bedford_ql
+Char B1,Tank,None,France,WW2,Heavily armored tank with a main gun in the hull and a turret-mounted cannon.,char_b1
+Churchill AVRE,Engineering Vehicle,None,United Kingdom,WW2,Armored vehicle designed for battlefield engineering and demolition tasks.,Churchill_AVRE
+Churchill Crocodile,Tank,Engineering Vehicle,United Kingdom,WW2,Flamethrower variant of the Churchill tank used for bunker assault.,Churchill_Crocodile
+Daimler Armored Car,Armored Car,None,United Kingdom,WW2,Fast reconnaissance vehicle with a rotating turret and machine gun.,Daimler_Armored_Car
+Dodge WC Series,Transport Vehicle,Multi-Purpose Vehicle,United States,WW2,Series of military trucks used for troop transport and command.,Dodge_WC_Series
+Ferdinand/Elefant,Self-Propelled Gun,Tank Destroyer,Germany,WW2,German tank destroyer with thick armor and a high-velocity gun.,Ferdinand_Elefant
+Ford Model T Ambulance,Transport Vehicle,None,United States,WW1,Used to transport wounded soldiers from the battlefield to medical stations.,Ford_Model_T Ambulance
+GAZ-67,Transport Vehicle,Multi-Purpose Vehicle,Soviet Union,WW2,"Soviet 4x4 vehicle used for reconnaissance, command, and transport.",Gaz-67.jpg
+GMC CCKW,Transport Vehicle,None,United States,WW2,Common Allied military truck used for logistics and troop movement.,GMC_CCKW
+Horch 901,Transport Vehicle,Multi-Purpose Vehicle,Germany,WW2,German light military vehicle used for transport and reconnaissance.,Horch_901
+IS-2,Tank,None,Soviet Union,WW2,Heavy tank used by the Soviet Union with a large-caliber gun for destroying fortifications.,IS-2
+Jagdpanther,Self-Propelled Gun,Tank Destroyer,Germany,WW2,German tank destroyer based on the Panther chassis with a powerful 88mm gun.,Jagdpanther
+Komsomolets T-20,Transport Vehicle,Multi-Purpose Vehicle,Soviet Union,WW2,Small Soviet tracked vehicle used for towing artillery and transporting troops.,Komsomolets-T-20
+Kübelwagen,Transport Vehicle,Multi-Purpose Vehicle,Germany,WW2,German military vehicle used for reconnaissance and transport.,VW_Kuebelwagen_1.jpg
+KV-1,Tank,None,Soviet Union,WW2,Heavy Soviet tank with thick armor and a powerful gun.,KV-1
+Lanchester Armored Car,Armored Car,None,United Kingdom,WW1,British armored car used for reconnaissance and light combat.,Lanchester_Armored Car
+Leichter Panzerspähwagen,Armored Car,None,Germany,WW2,Light reconnaissance vehicle used for scouting and command.,Leichter_panzer
+LVT-2 Buffalo,Amphibious Vehicle,Transport Vehicle,United States,WW2,Amphibious tracked vehicle used for landing operations and troop transport.,LVT_2
+LVT-4,Amphibious Vehicle,Transport Vehicle,United States,WW2,Amphibious landing vehicle used for troop and equipment transport.,LVT_4
+M10 Wolverine,Self-Propelled Gun,Tank Destroyer,United States,WW2,"Tank destroyer with an open turret, designed to counter enemy armor.",M10_wolverine
+M29 Weasel,Amphibious Vehicle,Multi-Purpose Vehicle,United States,WW2,Tracked vehicle designed for mobility in snow and rough terrain.,M29_Weasel
+M3 Half-Track,Half-Track,Transport Vehicle,United States,WW2,Versatile armored vehicle used for troop transport and command roles.,M3_Half-Track
+M3 Stuart,Tank,None,United States,WW2,Light tank used for reconnaissance and infantry support.,M3_Stuart
+M4 Sherman,Tank,None,United States,WW2,"Mass-produced tank used by Allied forces, known for reliability and mobility.",M4_Sherman_tank
+M8 Greyhound,Armored Car,None,United States,WW2,Six-wheeled armored reconnaissance vehicle used by the Allies.,M8_Greyhound
+Mark I,Tank,None,United Kingdom,WW1,"First operational tank, used to cross trenches and provide infantry support.",Mark_I
+Marmon-Herrington Armored Car,Armored Car,None,South Africa,WW2,Light armored vehicle used for reconnaissance and patrol.,Marmon-Herrington_Armored_Car
+Opel Blitz,Transport Vehicle,None,Germany,WW2,Standard German military truck used for logistics and troop transport.,Opel_Blitz
+Panzer IV,Tank,None,Germany,WW2,German medium tank used extensively in multiple roles during WW2.,Panzer_IV
+Renault FT,Tank,None,France,WW1,"Light tank with a fully rotating turret, setting the design standard for future tanks.",Renault_FT
+Renault UE Chenillette,Transport Vehicle,Multi-Purpose Vehicle,France,WW2,Small tracked vehicle used for supply transport and reconnaissance.,Renault_UE_Chenillette
+Rolls-Royce Armored Car,Armored Car,None,United Kingdom,WW1,Lightly armored reconnaissance vehicle used in WW1 and interwar conflicts.,Rolls-Royce_Armored_Car
+Saint-Chamond,Tank,None,France,WW1,Heavy French tank with a large main gun but poor trench-crossing ability.,Saint-Chamond
+Schneider CA1,Tank,None,France,WW1,French tank with a boxy design used in trench warfare.,Schneider_CA1
+Sd.Kfz. 222,Armored Car,None,Germany,WW2,German light reconnaissance vehicle with a turret-mounted autocannon.,Sd_Kfz_222
+Sd.Kfz. 234 Puma,Armored Car,None,Germany,WW2,Fast wheeled reconnaissance vehicle with a turret-mounted gun.,Sd_Kfz_234_Puma
+Sd.Kfz. 251,Half-Track,Transport Vehicle,Germany,WW2,German armored troop carrier used for infantry transport and support.,Sd_Kfz_251
+Sdkfz. 7,Transport Vehicle,Multi-Purpose Vehicle,Germany,WW2,Half-track vehicle used for transporting troops and towing artillery.,Sdkfz_7
+Sturmtiger,Self-Propelled Gun,None,Germany,WW2,Heavily armored vehicle carrying a large-caliber rocket launcher for urban combat.,Sturmtiger
+SU-100,Self-Propelled Gun,Tank Destroyer,Soviet Union,WW2,Soviet tank destroyer with a powerful 100mm gun used against heavy tanks.,SU-100
+SU-76,Self-Propelled Gun,None,Soviet Union,WW2,Light self-propelled gun used for infantry support and anti-tank operations.,SU-76
+T-26,Tank,None,Soviet Union,WW2,"Soviet light tank used in early WW2, based on British and French designs.",T-26
+T-34,Tank,None,Soviet Union,WW2,"Soviet tank with sloped armor and a powerful gun, effective against German forces.",T-34
+T-35,Tank,None,Soviet Union,WW2,Multi-turreted heavy tank designed for breakthrough operations.,T-35
+Type 4 Ka-Tsu,Amphibious Vehicle,Transport Vehicle,Japan,WW2,Japanese tracked amphibious vehicle used for special landing operations.,Type_4_Ka-Tsu
+Type 95 Ha-Go,Tank,None,Japan,WW2,Japanese light tank used for reconnaissance and infantry support.,Type_95_Ha-Go
+Type 97 Te-Ke,Tank,None,Japan,WW2,Japanese light tank used for reconnaissance and infantry support.,Type_97_Te-Ke
+Universal Carrier,Multi-Purpose Vehicle,Transport Vehicle,United Kingdom,WW2,"Light tracked vehicle used for reconnaissance, transport, and support.",Universal_Carrier
+Vickers Medium Mark I,Tank,None,United Kingdom,WW1,British interwar tank with a fully rotating turret and moderate armor.,Vickers_Medium_Mark_I
+Whippet,Tank,None,United Kingdom,WW1,Fast British tank used for infantry support and breakthrough operations.,Whippet
+Willys MB Jeep,Transport Vehicle,Multi-Purpose Vehicle,United States,WW2,"Light 4x4 vehicle used for reconnaissance, transport, and command roles.",Willys_MB_Jeep
