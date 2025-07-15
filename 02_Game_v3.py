@@ -156,6 +156,8 @@ class game:
         self.rounds_wanted = IntVar()
         self.rounds_wanted.set(how_many)
 
+        self.rounds_won = IntVar()
+
         self.round_vehicle_list = []
 
         self.play_box = Toplevel()
@@ -172,7 +174,7 @@ class game:
         play_labels_list = [
             ["War Vehicles Quiz", ("Arial", "16", "bold"), "#dad7cd", 0],
             ["Vehicle name goes here", body_font, "#D5E8D4", 2],
-            ["You chose, result", body_font, "#D5E8D4", 4]
+            ["choose an image and then press next", body_font, "#D5E8D4", 4]
         ]
 
         play_labels_ref = []
@@ -181,7 +183,7 @@ class game:
                                     bg=item[2], wraplength=300, justify="left")
             self.make_label.grid(row=item[3], pady=10, padx=10)
 
-            play_labels_ref.append(item)
+            play_labels_ref.append(self.make_label)
 
         # set score and rounds frame
         self.score_rounds_frame = Frame(self.game_frame, bg="#dad7cd")
@@ -202,7 +204,7 @@ class game:
             score_round_labels_ref.append(self.make_label)
 
         # retrieve labels so they can be configured later
-        self.heading_label = play_labels_ref[0]
+        self.heading_label = play_labels_ref[1]
         self.target_score = score_round_labels_ref[0]
         self.target_round = score_round_labels_ref[1]
         self.results_label = play_labels_ref[2]
@@ -232,7 +234,7 @@ class game:
         # list for buttons (frame | text | bg | command | width | row | column)
         control_button_list = [
             [self.help_next_stats_frame, "Help", "#588157", "", 5, 0, 0],
-            [self.help_next_stats_frame, "Next Round", "#4B5320", "", 10, 0, 1],
+            [self.help_next_stats_frame, "Next Round", "#4B5320", self.new_round, 10, 0, 1],
             [self.help_next_stats_frame, "Stats", "#344e41", "", 5, 0, 2],
             [self.game_frame, "End", "#990000", self.close_play, 23, 7, None],
         ]
@@ -247,6 +249,8 @@ class game:
 
             control_ref_list.append(make_control_button)
 
+        self.next_button = control_ref_list[1]
+        self.end_game_button = control_ref_list[3]
 
         self.new_round()
 
@@ -276,13 +280,19 @@ class game:
         # sets the correct answer
         print("round vehicle list", self.round_vehicle_list)
 
-        self.correct_answer.set(self.round_vehicle_list[2][1])
+        self.correct_answer.set(self.round_vehicle_list[2][0])
 
         random.shuffle(self.round_vehicle_list)
 
 
         correct_answer = self.correct_answer.get()
         print("correct answer:", correct_answer)
+
+        print("test", self.correct_answer)
+
+        print("heading label", self.heading_label)
+
+        self.heading_label.config(text=f"Choose the image that is a\n{correct_answer}", justify='center')
 
 
 
@@ -305,25 +315,27 @@ class game:
 
             img = ImageTk.PhotoImage(image)
 
-            item.config(image=img)
+            item.config(image=img, state=NORMAL)
             # garbage collection
             item.image=img
+
+
+        self.next_button.config(state=DISABLED)
 
 
     def round_results(self, user_choice):
 
         """
         Retrieves which button was pushed (index 0 - 3), retrieves
-        score and updates results
-        and adds results to stats list.
+        score and updates results and adds results to stats list.
         """
 
         rounds_played = self.rounds_played.get()
         rounds_played += 1
         self.rounds_played.set(rounds_played)
 
-        # get user score and colour based on buttons press..
-        answer = (self.round_vehicle_list[user_choice][1])
+        # get user answer and vehicle based on buttons press...
+        answer = (self.round_vehicle_list[user_choice][0])
 
 
 
@@ -334,17 +346,38 @@ class game:
 
         print(answer)
 
+        # retrieve the correct answer
         correct_answer = self.correct_answer.get()
 
 
 
+        # print statements based on if the answer is correct
         if answer == correct_answer:
-            print("correct")
+            self.results_label.config(text="Congrats you got it correct!")
+
+            rounds_won = self.rounds_won.get()
+            rounds_won += 1
+            self.rounds_won.set(rounds_won)
+            self.target_score.config(text=f"score: {rounds_won}")
 
         else:
-            print("wrong")
+            self.results_label.config(text=f"Wrong! you chose {answer}")
 
 
+        # enable next round button
+        self.next_button.config(state=NORMAL)
+
+        # check to see if game is over
+        rounds_wanted = self.rounds_wanted.get()
+
+        if rounds_played == rounds_wanted:
+
+
+            self.next_button.config(state=DISABLED, text="Game Over")
+            self.end_game_button.config(text="Play Again", bg="#006600")
+
+        for item in self.vehicle_button_ref:
+            item.config(state=DISABLED)
 
 
 
