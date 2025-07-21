@@ -66,13 +66,12 @@ class StartGame:
 
         # List of labels to be made (text | font | fg)
         start_labels_list = [
-            ["War Vehicle Quiz", ("Arial", "16", "bold"), None],
-            [intro_string, ("Arial", "12"), None],
-            [choose_string, ("Arial", "12", "bold"), "#009900"]
+            ["War Vehicle Quiz", ("Courier New", "16", "bold"), None],
+            [intro_string, ("Courier New", "12"), None],
+            [choose_string, ("Courier New", "12", "bold"), "#009900"]
         ]
 
         # create labels and add them to the reference list...
-
         start_label_ref = []
         for count, item in enumerate(start_labels_list):
             make_label = Label(self.start_frame, text=item[0], font=item[1],
@@ -90,12 +89,12 @@ class StartGame:
         self.entry_area_frame = Frame(self.start_frame)
         self.entry_area_frame.grid(row=3)
 
-        self.num_rounds_entry = Entry(self.entry_area_frame, font=("Arial", 20, "bold"),
+        self.num_rounds_entry = Entry(self.entry_area_frame, font=("Courier New", 20, "bold"),
                                       width=10)
         self.num_rounds_entry.grid(row=0, column=0, padx=10, pady=10)
 
         # create play button
-        self.play_button = Button(self.entry_area_frame, font=("Arial", 16, "bold"),
+        self.play_button = Button(self.entry_area_frame, font=("Courier New", 16, "bold"),
                                   fg="#FFFFFF", bg="#4B5320", text="Play", width=10,
                                   command=self.check_rounds)
         self.play_button.grid(row=0, column=1)
@@ -109,7 +108,7 @@ class StartGame:
         rounds_wanted = self.num_rounds_entry.get()
 
         # Reset label and entry box (for when users come to home)
-        self.choose_label.config(fg="#009900", font=("Arial", "12", "bold"))
+        self.choose_label.config(fg="#009900", font=("Courier New", "12", "bold"))
         self.num_rounds_entry.config(bg="#FFFFFF")
 
         error = "Oops - please choose a whole number more than zero"
@@ -133,7 +132,7 @@ class StartGame:
         # display the error if necessary
         if has_errors == "yes":
             self.choose_label.config(text=error, fg="#990000",
-                                     font=("Arial", "10", "bold"))
+                                     font=("Courier New", "10", "bold"))
             self.num_rounds_entry.config(bg="#F4CCCC")
             self.num_rounds_entry.delete(0, END)
 
@@ -168,11 +167,11 @@ class game:
 
 
         # body font for most labels
-        body_font = ("Arial", "12")
+        body_font = ("Courier New", "12")
 
         # list for label details (text | font | background | row)
         play_labels_list = [
-            ["War Vehicles Quiz", ("Arial", "16", "bold"), "#dad7cd", 0],
+            ["War Vehicles Quiz", ("Courier New", "16", "bold"), "#dad7cd", 0],
             ["Vehicle name goes here", body_font, "#D5E8D4", 2],
             ["choose an image and then press next", body_font, "#D5E8D4", 4]
         ]
@@ -192,7 +191,7 @@ class game:
         # list and label for rounds and score
         # (text | font | background | row | column)
         score_round_labels_list = [
-            ["Score: #", body_font, "#a3b18a", 1, 1],
+            ["Score: 0", body_font, "#a3b18a", 1, 1],
             ["Round # of #", body_font, "#a3b18a", 1, 0]
         ]
         score_round_labels_ref = []
@@ -210,6 +209,7 @@ class game:
         self.results_label = play_labels_ref[2]
 
 
+
         # set up vehicle buttons
         self.vehicle_frame = Frame(self.game_frame, bg="#dad7cd")
         self.vehicle_frame.grid(row=3)
@@ -219,7 +219,7 @@ class game:
 
         # create four buttons in a 2 x 2 grid
         for item in range(0, 4):
-            self.vehicle_button = Button(self.vehicle_frame, font=("arial", 12),
+            self.vehicle_button = Button(self.vehicle_frame, font=("Courier New", 12),
                                          text="test image",
                                          command=partial(self.round_results, item))
             self.vehicle_button.grid(row=item // 2,
@@ -233,9 +233,9 @@ class game:
 
         # list for buttons (frame | text | bg | command | width | row | column)
         control_button_list = [
-            [self.help_next_stats_frame, "Help", "#588157", "", 5, 0, 0],
+            [self.help_next_stats_frame, "Help", "#588157", self.to_help, 5, 0, 0],
             [self.help_next_stats_frame, "Next Round", "#4B5320", self.new_round, 10, 0, 1],
-            [self.help_next_stats_frame, "Stats", "#344e41", "", 5, 0, 2],
+            [self.help_next_stats_frame, "Stats", "#344e41", self.to_stats, 5, 0, 2],
             [self.game_frame, "End", "#990000", self.close_play, 23, 7, None],
         ]
 
@@ -243,14 +243,18 @@ class game:
         control_ref_list = []
         for item in control_button_list:
             make_control_button = Button(item[0], text=item[1], bg=item[2],
-                                         command=item[3], font=("Arial", 16, "bold"),
+                                         command=item[3], font=("Courier New", 16, "bold"),
                                          fg="#FFFFFF", width=item[4])
             make_control_button.grid(row=item[5], column=item[6], padx=3, pady=5)
 
             control_ref_list.append(make_control_button)
 
+        self.help_button = control_ref_list[0]
         self.next_button = control_ref_list[1]
+        self.stats_button = control_ref_list[2]
         self.end_game_button = control_ref_list[3]
+
+        self.stats_button.config(state=DISABLED)
 
         self.new_round()
 
@@ -269,8 +273,6 @@ class game:
 
         rounds_wanted = self.rounds_wanted.get()
 
-
-
         #  get round vehicles
         self.round_vehicle_list = get_round_vehicles()
 
@@ -278,21 +280,16 @@ class game:
         self.target_round.config(text=f"Round {rounds_played + 1} of {rounds_wanted}")
         # self.results_label.config(text=f"{'=' * 7}", bg="#F0F0F0")
         # sets the correct answer
-
-
         self.correct_answer.set(self.round_vehicle_list[2][0])
 
         random.shuffle(self.round_vehicle_list)
-
 
         correct_answer = self.correct_answer.get()
 
 
         self.heading_label.config(text=f"Choose the image that is a\n{correct_answer}", justify='center')
 
-
-
-
+        self.results_label.config(bg="#D5E8D4", text="Choose an image and then press next." )
 
 
         # file Path
@@ -323,6 +320,8 @@ class game:
         score and updates results and adds results to stats list.
         """
 
+        self.stats_button.config(state=NORMAL)
+
         rounds_played = self.rounds_played.get()
         rounds_played += 1
         self.rounds_played.set(rounds_played)
@@ -331,28 +330,22 @@ class game:
         answer = (self.round_vehicle_list[user_choice][0])
 
 
-
-        # alternate way to get button name. good for if buttons have been scrambled
-        vehicle_name = self.vehicle_button_ref[user_choice].cget('text')
-
-
-
         # retrieve the correct answer
         correct_answer = self.correct_answer.get()
 
-
-
         # print statements based on if the answer is correct
         if answer == correct_answer:
-            self.results_label.config(text="Congrats you got it correct!")
+            self.results_label.config(bg="#D5E8D4",text="Congrats you got it correct!")
 
             rounds_won = self.rounds_won.get()
             rounds_won += 1
             self.rounds_won.set(rounds_won)
-            self.target_score.config(text=f"score: {rounds_won}")
+            self.target_score.config(text=f"score: {rounds_won} out of {rounds_played}")
 
         else:
-            self.results_label.config(text=f"Wrong! you chose {answer}")
+            self.results_label.config(bg="#FF6767", text=f"Wrong! you chose {answer}")
+            rounds_won = self.rounds_won.get()
+            self.target_score.config(text=f"score: {rounds_won} out of {rounds_played}")
 
 
         # enable next round button
@@ -362,15 +355,18 @@ class game:
         rounds_wanted = self.rounds_wanted.get()
 
         if rounds_played == rounds_wanted:
-
-
             self.next_button.config(state=DISABLED, text="Game Over")
             self.end_game_button.config(text="Play Again", bg="#006600")
 
         for item in self.vehicle_button_ref:
             item.config(state=DISABLED)
 
-
+    def to_help(self):
+        """
+        Displays help for playing game
+        :return:
+        """
+        Displayhelp(self)
 
 
     def close_play(self):
@@ -378,6 +374,189 @@ class game:
         # game / allow new game to start
         root.deiconify()
         self.play_box.destroy()
+
+    def to_stats(self):
+        """
+        Retrieves everything we need to display the game / round statistics
+        """
+
+
+         #  IMPORTANT: retrieve number of rounds
+         # won as number (rather than self container)
+        rounds_won = self.rounds_won.get()
+        rounds_played = self.rounds_played.get()
+
+        stats_bundle = [rounds_won, rounds_played]
+
+        Stats(self, stats_bundle)
+
+
+
+
+
+class Stats:
+
+    def __init__(self, partner, all_stats_info):
+
+
+        # Extract information from master list
+        rounds_won = all_stats_info[0]
+        user_scores = all_stats_info[0]
+        high_scores = all_stats_info[0]
+        rounds_played = all_stats_info[1]
+
+
+        # setup dialogue box amd background colour
+
+        self.stats_box = Toplevel()
+
+        # disable stats button
+        partner.stats_button.config(state=DISABLED)
+
+        # if users press cross at the top, closes stats
+        #  and releases stats box
+        self.stats_box.protocol('WM_DELETE_WINDOW',
+                                partial(self.close_stats, partner))
+
+        self.stats_frame = Frame(self.stats_box, width=300,
+                                 height=200)
+        self.stats_frame.grid()
+
+        # math to populate stats dialog
+
+        success_rate = rounds_won / rounds_played * 100
+        total_score = user_scores
+        max_possible = rounds_played
+
+
+
+        # strings for stats labels..
+
+        success_string = (f"Success Rate: {rounds_won} / {rounds_played}"
+                          f" ({success_rate:.0f}%)")
+        total_score_string = f"Total Score: {total_score}"
+        max_possible_string = f"Maximum possible score: {max_possible}"
+
+
+        # custom comment text and formatting
+        if total_score == max_possible:
+            comment_string = ("Amazing! You got the highest "
+                              "possible score!")
+            comment_colour = "#D5E8D4"
+
+        elif total_score == 0:
+            comment_string = ("Oops - Youve lost every round! "
+                              "you might want to look at the hints!")
+            comment_colour = "#F8CECC"
+        else:
+            comment_colour = "#F0F0F0"
+            comment_string = ""
+
+        heading_font = ("Courier New", "16", "bold")
+        normal_font = ("Courier New", "14")
+        comment_font = ("Courier New", "13")
+
+        # label list (text | font | 'Sticky')
+        all_stats_strings = [
+            ["Statistics", heading_font, ""],
+            [success_string, normal_font, "W"],
+            [total_score_string, normal_font, "W"],
+            [max_possible_string, normal_font, "W"],
+            [comment_string, comment_font, "W"]
+        ]
+
+        stats_label_ref_list = []
+        for count, item in enumerate(all_stats_strings):
+            self.stats_label = Label(self.stats_frame, text=item[0], font=item[1],
+                                     anchor="w", justify="left",
+                                     padx=30, pady=5)
+            self.stats_label.grid(row=count, sticky=item[2], padx=10)
+            stats_label_ref_list.append(self.stats_label)
+
+        # configure comment label background (for all won / all lost)
+        stats_comment_label = stats_label_ref_list[4]
+        stats_comment_label.config(bg="#FFFFFF")
+
+        self.dismiss_button = Button(self.stats_frame,
+                                     font=("Courier New", "12", "bold"),
+                                     text="Dismiss", bg="#CC6600",
+                                     fg="#FFFFFF",
+                                     command=partial(self.close_stats, partner))
+        self.dismiss_button.grid(row=5, padx=10, pady=10)
+
+    def close_stats(self, partner):
+        """
+        Closes stats dialogue box (and enable stats button)
+        """
+        # put stats button back to normal
+        partner.stats_button.config(state=NORMAL)
+        self.stats_box.destroy()
+
+
+
+
+
+
+
+class Displayhelp:
+
+    def __init__(self, partner):
+        # setup dialogue box amd background colour
+        background = "#dad7cd"
+        self.help_box = Toplevel()
+        self.help_box.resizable(False, False)
+
+        # disable help button
+        partner.help_button.config(state=DISABLED)
+
+        # if users press cross at the top, closes help
+        #  and releases help box
+        self.help_box.protocol('WM_DELETE_WINDOW',
+                               partial(self.close_help, partner))
+
+        self.help_frame = Frame(self.help_box, width=300,
+                                height=200)
+        self.help_frame.grid()
+
+        self.help_heading_label = Label(self.help_frame,
+                                        text="Help",
+                                        font=("Courier New", "14", "bold"))
+        self.help_heading_label.grid(row=0)
+
+        self.help_text_label = Label(self.help_frame,
+                                     text="So basically at the top of the screen its gonna have what round you're on and your score."
+                                          " Below that it's gonna tell you the name of what vehicle you need to choose."
+                                          " Now underneath that is the fun part, the images, you find the image of the vehicle you were asked for and click on it."
+                                          " you will then be told if you got it right or wrong. If you did well and got it correct then your score will increase by 1."
+                                          " Now after everytime you click an image you will need to then click the next round button which is below the images."
+                                          " When you have played all your rounds, you can click stats and flex on your friends about your highscore.", wraplength=350,
+                                     font=("Courier New", "11", "bold"), justify="left")
+        self.help_text_label.grid(row=1, padx=10)
+
+        self.dismiss_button = Button(self.help_frame,
+                                     font=("Courier New", "12", "bold"),
+                                     text="Close", bg="#588157",
+                                     fg="#FFFFFF",
+                                     command=partial(self.close_help, partner))
+        self.dismiss_button.grid(row=2, padx=10, pady=10)
+
+        # list and loop to set the background colour on
+        # everything except buttons
+        recolour_list = [self.help_frame, self.help_heading_label,
+                         self.help_text_label]
+
+        for item in recolour_list:
+            item.config(bg=background)
+
+    def close_help(self, partner):
+        """
+        Closes help dialogue box (and enable help button)
+        """
+        # put help button back to normal
+        partner.help_button.config(state=NORMAL)
+        self.help_box.destroy()
+
+
 
 
 # main routine
